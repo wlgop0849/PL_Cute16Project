@@ -434,7 +434,6 @@ class CuteInterpreter(object):
             a.next = result
             return create_quote_node(a, True)
 
-
         elif func_node.type is TokenType.ATOM_Q:
             if list_is_null(rhs1): return self.TRUE_NODE
             if rhs1.type is not TokenType.LIST: return self.TRUE_NODE
@@ -469,7 +468,6 @@ class CuteInterpreter(object):
             if list_is_null(func_node):
                 return " COND error!"
             return self.cond_fun(rhs1)
-
 
     def cond_fun(self,cond_node):
         if cond_node.value.type is TokenType.LIST:
@@ -615,10 +613,12 @@ def Test_method(input):
     print print_node(result)
 
 def Test_All():
-    test = raw_input()
+     while True :
+            input = raw_input("> ")
+            if input == '' :
+                print "종료"
+                break
+            print "...",
+            Test_method(input)
 
-    Test_method(test)
-    #Test_method(" ( - ( + 1 2 ) 4 ) ")
-    #Test_method("( not #T )")
-    #Test_method("( cond ( ( null? ' ( 1 2 3 ) ) 1 ) ( ( > 100 10 ) 2 ) ( #T 3 ) )")
 Test_All()
